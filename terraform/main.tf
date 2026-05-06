@@ -134,7 +134,7 @@ resource "aws_route_table_association" "private_b" {
 # ══════════════════════════════════════════
 
 resource "aws_security_group" "alb" {
-  name        = "sg-alb"
+  name        = "alb-sg"
   description = "ALB: HTTP from internet only"
   vpc_id      = aws_vpc.main.id
 
@@ -153,11 +153,11 @@ resource "aws_security_group" "alb" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags = { Name = "sg-alb" }
+  tags = { Name = "alb-sg" }
 }
 
 resource "aws_security_group" "backend" {
-  name        = "sg-backend"
+  name        = "backend-sg"
   description = "Backend: traffic only from ALB"
   vpc_id      = aws_vpc.main.id
 
@@ -180,7 +180,7 @@ resource "aws_security_group" "backend" {
 }
 
 resource "aws_security_group" "rds" {
-  name        = "sg-rds"
+  name        = "rds-sg"
   description = "RDS: MySQL only from backend EC2"
   vpc_id      = aws_vpc.main.id
 
@@ -203,7 +203,7 @@ resource "aws_security_group" "rds" {
 }
 
 resource "aws_security_group" "frontend" {
-  name        = "sg-frontend"
+  name        = "frontend-sg"
   description = "Frontend: HTTP from internet, SSH for debug"
   vpc_id      = aws_vpc.main.id
 
@@ -230,7 +230,7 @@ resource "aws_security_group" "frontend" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags = { Name = "sg-frontend" }
+  tags = { Name = "frontend-sg" }
 }
 
 # ══════════════════════════════════════════

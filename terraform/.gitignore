@@ -8,3 +8,4 @@ terraform.tfvars
 *.tfstate.backup
 *.tfstate.lock.info
 crash.log
+set-aws-creds.ps1
